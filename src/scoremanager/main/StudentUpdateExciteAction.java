@@ -48,7 +48,7 @@ public class StudentUpdateExciteAction  extends Action{
 
 		//DBに更新する
 		StudentDao stuDao = new StudentDao();
-		stuDao.update(student);
+		stuDao.save(student);
 
 
 		request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
