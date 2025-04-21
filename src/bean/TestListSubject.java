@@ -11,6 +11,7 @@ public class TestListSubject {
 	String classNum;
 	Map<Integer, Integer> points = new HashMap<>();
 
+
 	public int getEntYear() {
 		return entYear;
 	}
