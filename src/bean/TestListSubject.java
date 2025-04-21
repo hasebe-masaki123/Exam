@@ -10,7 +10,8 @@ public class TestListSubject {
 	String studentName;
 	String classNum;
 	Map<Integer, Integer> points = new HashMap<>();
-
+	
+//変更部分
 
 	public int getEntYear() {
 		return entYear;
