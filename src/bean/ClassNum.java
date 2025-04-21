@@ -1,5 +1,5 @@
 package bean;
-
+//クラス
 public class ClassNum {
 
 	private School school;
