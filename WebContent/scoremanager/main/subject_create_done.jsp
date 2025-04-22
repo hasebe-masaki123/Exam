@@ -14,6 +14,9 @@
 <p class="mb-3 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
 
 
+<a href="SubjectCreate.action">戻る</a>
+
+<a href="SubjectList.action">科目一覧</a>
 </section>
 </c:param>
 </c:import>

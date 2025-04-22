@@ -25,9 +25,9 @@
 		<input class="form-control" type="text" value="${name }" id="name" name="name" maxlength=10 required>
 	</div>
 
-	<input class="btn btn-secondary" type="submit" value="登録して終了">
+	<p><input class="btn btn-secondary" type="submit" value="登録">
 </form>
-<a href="SubjectList.action">戻る</a>
+<a href="SubjectList.action">戻る</a></p>
 
 
 </section>

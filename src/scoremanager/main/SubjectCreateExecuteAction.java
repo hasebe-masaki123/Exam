@@ -34,7 +34,7 @@ public class SubjectCreateExecuteAction extends Action {
         SubjectDao dao = new SubjectDao();
         dao.save(subject);
 
-        // 一覧画面へ
-        request.getRequestDispatcher("SubjectList.action").forward(request, response);
+
+        request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
     }
 }
