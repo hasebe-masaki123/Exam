@@ -1,15 +1,12 @@
 package scoremanager.main;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Subject;
 import bean.Teacher;
-import dao.ClassNumDao;
+import dao.SubjectDao;
 import tool.Action;
 
 public class SubjectCreateExecuteAction extends Action {
@@ -22,30 +19,22 @@ public class SubjectCreateExecuteAction extends Action {
 		HttpSession session = request.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-		//登録用の日時データを取得、設定
-		LocalDate todaysDate = LocalDate.now();
-		int year = todaysDate.getYear();
+		String cd = request.getParameter("cd");
+        String name = request.getParameter("name");
 
-		List<Integer> entYearSet = new ArrayList<>();
+     // エラー表示
+        java.util.Map<String, String> errors = new java.util.HashMap<>();
 
-		for (int i= year-10; i < year + 11; i++) {
-			entYearSet.add(i);
-		}
+     // 登録処理
+        Subject subject = new Subject();
+        subject.setCd(cd);
+        subject.setName(name);
+        subject.setSchool(teacher.getSchool());
 
-		//セッションのユーザーデータから所属している学校のクラス一覧用データを取得
-		ClassNumDao cNumDao = new ClassNumDao();
-		List<String> list = cNumDao.filter(teacher.getSchool());
+        SubjectDao dao = new SubjectDao();
+        dao.save(subject);
 
-
-		session.setAttribute("ent_year_set", entYearSet);
-		session.setAttribute("class_num_set", list);
-
-
-		request.getRequestDispatcher("student_create.jsp").forward(request, response);
-
-
-
-
-
-	}
+        // 一覧画面へ
+        request.getRequestDispatcher("SubjectList.action").forward(request, response);
+    }
 }
