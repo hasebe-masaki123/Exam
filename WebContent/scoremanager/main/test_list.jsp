@@ -14,10 +14,10 @@
 <div class="container border mx-3 mb-3 py-2 rounded" id="filter">
 
 	<!-- 科目情報フォーム -->
-	<form action="TestListSubjectExcecute.action?f1=${f1}&f2=${f2}&f3=${f3}&f=${f}" method="get" class="mb-4 border-bottom">
+	<form action="TestListSubjectExecute.action?f1=${f1}&f2=${f2}&f3=${f3}&f=${f}" method="get" class="mb-4 border-bottom">
 		<input type="hidden" name="f" value="sj">
-		<div class="row mb-2">
-			<div class="col-2 text-center">
+		<div class="row mb-2 d-flex align-items-center">
+			<div class="col-2 text-center mt-auto">
 				<p>科目情報</p>
 			</div>
 
@@ -51,7 +51,7 @@
 				</select>
 			</div>
 
-			<div class="col-2 text-center mt-3">
+			<div class="col-md-2 d-flex align-items-end">
 				<button class="btn btn-secondary" id="filter-button">検索</button>
 			</div>
 
@@ -60,10 +60,10 @@
 	</form>
 
 	<!-- 学生情報フォーム -->
-	<form action="TestListStudentExcecute.action?f4=${f4}&f=${f}" method="get">
+	<form action="TestListStudentExecute.action?f4=${f4}&f=${f}" method="get">
 		<input type="hidden" name="f" value="st">
 		<div class="row mb-2">
-			<div class="col-2 text-center">
+			<div class="col-2 text-center mt-auto">
 				<p>学生情報</p>
 			</div>
 
@@ -73,14 +73,17 @@
 			</div>
 
 			<div class="col-md-2 d-flex align-items-end">
-				<button class="btn btn-secondary w-100" id="filter-button">検索</button>
+				<button class="btn btn-secondary" id="filter-button">検索</button>
 			</div>
 
 			<div class="col-12 mt-2 text-warning">${errors.get("f1")}</div>
 		</div>
 	</form>
-</div>
 
+</div>
+<div>
+	<p class="text-info">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
+</div>
 
 </section>
 </c:param>
