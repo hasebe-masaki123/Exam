@@ -71,7 +71,7 @@
 				<td class="text-center">
 					<c:choose>
 						<c:when test="${student.isAttend()}">
-						◯
+							◯
 						</c:when>
 						<c:otherwise>
 							×

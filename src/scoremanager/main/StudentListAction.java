@@ -37,7 +37,6 @@ public class StudentListAction extends Action{
 		LocalDate todaysDate = LocalDate.now();
 		int year = todaysDate.getYear();
 
-
 		//セッションのユーザーデータから所属している学校の生徒一覧用データを取得
 		StudentDao stuDao = new StudentDao();
 		ClassNumDao cNumDao = new ClassNumDao();
