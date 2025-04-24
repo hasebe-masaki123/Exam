@@ -11,6 +11,7 @@ public class TestListSubject {
 	String classNum;
 	Map<Integer, Integer> points = new HashMap<>();
 
+
 	public int getEntYear() {
 		return entYear;
 	}
@@ -40,6 +41,16 @@ public class TestListSubject {
 	}
 	public void setPoints(Map<Integer, Integer> points) {
 		this.points = points;
+	}
+
+	public String getPoint(int key) {
+		Integer value = points.get(key);
+		return (value != null) ? value.toString() : null;
+
+	}
+
+	public void putPoint(int key, int value) {
+		points.put(key, value);
 	}
 
 }
