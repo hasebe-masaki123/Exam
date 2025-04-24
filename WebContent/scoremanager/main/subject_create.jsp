@@ -14,12 +14,11 @@
 
 
 <form action="SubjectCreateExecute.action">
-	<div class="mt-2 text-warning">${errors.get("1")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="cd">科目コード</label>
 		<input class="form-control" type="text" value="${cd }" id="cd"  name="cd" maxlength=10 required>
+	<div class="mt-2 text-warning">${errors.get("1")}${errors.get("2")}</div>
 	</div>
-	<div class="mt-2 text-warning">${errors.get("2")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >科目名</label>
 		<input class="form-control" type="text" value="${name }" id="name" name="name" maxlength=10 required>
