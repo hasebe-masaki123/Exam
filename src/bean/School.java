@@ -1,5 +1,5 @@
 package bean;
-
+// getter, setter
 import java.io.Serializable;
 
 public class School implements Serializable {

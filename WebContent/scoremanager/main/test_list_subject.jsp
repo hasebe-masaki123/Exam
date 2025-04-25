@@ -81,7 +81,7 @@
 
 <c:choose>
 <c:when test="${list.size()>0 }">
-<div><p>科目：${subject_name}</p></div>
+<div><p>科目 : ${subject_name}</p></div>
 <table class="table table-hover">
 	<tr>
 		<th>入学年度</th>

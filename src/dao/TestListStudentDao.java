@@ -37,6 +37,8 @@ public class TestListStudentDao extends Dao {
 
 		try {
 			if (student != null) {
+
+
 				statement = connection.prepareStatement(
 							"SELECT SUBJECT.CD, SUBJECT.NAME, TEST.NO, TEST.POINT FROM SUBJECT "
 						+ "JOIN TEST ON SUBJECT.CD = TEST.SUBJECT_CD "

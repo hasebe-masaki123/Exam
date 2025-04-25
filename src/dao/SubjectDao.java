@@ -31,6 +31,7 @@ public class SubjectDao  extends Dao{
 
 			if(resultSet.next()) {
 
+
 			subject.setCd(resultSet.getString("cd"));
 			subject.setName(resultSet.getString("name"));
 			subject.setSchool(school);

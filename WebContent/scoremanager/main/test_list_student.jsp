@@ -85,7 +85,7 @@
 	<div>氏名：${student.name}（${f4 }）</div>
 	<table class="table table-hover">
 		<colgroup>
-		    <col class="col-6">
+		    <col class="col-2">
 		    <col class="col-2">
 		    <col class="col-2">
 		    <col class="col-2">

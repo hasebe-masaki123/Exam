@@ -73,7 +73,7 @@
 			</div>
 
 			<div class="col-md-2 d-flex align-items-end">
-				<button class="btn btn-secondary" id="filter-button">検索</button>
+				<button class="btn btn-secondary w-100" id="filter-button">検索</button>
 			</div>
 
 			<div class="col-12 mt-2 text-warning">${errors.get("f1")}</div>
