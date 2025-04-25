@@ -68,7 +68,7 @@
 
 			<div class="col-md-4">
 				<label class="form-label" for="test-f4-select">学生番号</label>
-				<input type="text" class="form-control" id="test-f4-select" name="f4" value="${f4 }" required>
+				<input type="text" class="form-control" id="test-f4-select" name="f4" value="${f4 }" placeholder="学生番号を入力してください"  required>
 			</div>
 
 			<div class="col-md-2 d-flex align-items-end">

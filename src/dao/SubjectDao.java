@@ -101,19 +101,19 @@ public class SubjectDao  extends Dao{
 			if (get(subject.getCd(), subject.getSchool()) == null ) {
 
 				statement = connection.prepareStatement(
-						"INSERT INTO STUDENT " +
+						"INSERT INTO SUBJECT " +
 						"VALUES(?,?,?)"
 					);
-					statement.setString(1, subject.getCd());
-					statement.setString(2,subject.getName());
-					statement.setString(3, subject.getSchool().getCd());
+					statement.setString(1, subject.getSchool().getCd());
+					statement.setString(2, subject.getCd());
+					statement.setString(3, subject.getName());
 
 					statement.executeUpdate();
 
 			} else {
 
 				statement = connection.prepareStatement(
-						"UPDATE STUDENT SET NAME = ? "
+						"UPDATE SUBJECT SET NAME = ? "
 						+
 						"WHERE Cd = ?"
 					);
