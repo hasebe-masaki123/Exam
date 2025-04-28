@@ -11,122 +11,106 @@ import bean.Subject;
 
 public class SubjectDao extends Dao {
 
-	public Subject get(String cd, School school) throws Exception {
-		Subject sub = new Subject();
+    public Subject get(String cd, School school) throws Exception {
+        Subject sub = null;
 
-		Connection con = getConnection();
+        Connection con = getConnection();
+        PreparedStatement statement = null;
 
-		PreparedStatement statement = null;
+        try {
+            statement = con.prepareStatement("SELECT * FROM SUBJECT WHERE CD = ? AND SCHOOL_CD = ?");
+            statement.setString(1, cd);
+            statement.setString(2, school.getCd());
+            ResultSet resultSet = statement.executeQuery();
 
-		try {
+            if (resultSet.next()) {
+                sub = new Subject();
+                sub.setCd(resultSet.getString("cd"));
+                sub.setName(resultSet.getString("name"));
+                sub.setSchool(school);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (con != null) con.close();
+        }
 
-			statement = con.prepareStatement(
-					"SELECT * FROM SUBJECT WHERE CD = ?"
-					);
+        return sub;
+    }
 
-			statement.setString(1, cd);
-			ResultSet resultSet = statement.executeQuery();
+    public List<Subject> filter(School school) throws Exception {
+        List<Subject> list = new ArrayList<>();
+        Connection con = getConnection();
+        PreparedStatement statement = null;
 
-			if(resultSet.next()) {
+        try {
+            statement = con.prepareStatement("SELECT * FROM SUBJECT WHERE SCHOOL_CD = ?");
+            statement.setString(1, school.getCd());
+            ResultSet resultSet = statement.executeQuery();
 
+            while (resultSet.next()) {
+                Subject sub = new Subject();
+                sub.setCd(resultSet.getString("cd"));
+                sub.setName(resultSet.getString("name"));
+                sub.setSchool(school);
+                list.add(sub);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null) statement.close();
+            if (con != null) con.close();
+        }
 
-			sub.setCd(resultSet.getString("cd"));
-			sub.setName(resultSet.getString("name"));
+        return list;
+    }
 
-			school.setCd(resultSet.getString("school_cd"));
-			sub.setSchool(school);
+    public boolean save(Subject subject) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
 
-			} else {
-				sub = null;
-			}
+        try {
+												if(subject.getCd() != null) {
+            statement = connection.prepareStatement("INSERT INTO SUBJECT (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)");
+            statement.setString(1, subject.getSchool().getCd());
+            statement.setString(2, subject.getCd());
+            statement.setString(3, subject.getName());
 
+            statement.executeUpdate();
+            connection.close();
+								} else {
+									   statement = connection.prepareStatement(
+                "UPDATE SUBJECT SET NAME = ? WHERE CD = ? AND SCHOOL_CD = ?"
+            );
+            statement.setString(1, subject.getName());
+            statement.setString(2, subject.getCd());
+            statement.setString(3, subject.getSchool().getCd());
 
-		} catch (Exception e){
-			throw e;
-		} finally {
-			if (statement != null) statement.close();
-			if (con != null) con.close();
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+												}
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
 
-		}
+        return true;
+    }
 
+    public boolean delete(Subject subject) throws Exception {
+        Connection con = getConnection();
+        PreparedStatement st = null;
+        try {
+            st = con.prepareStatement("DELETE FROM SUBJECT WHERE CD = ? AND SCHOOL_CD = ?");
+            st.setString(1, subject.getCd());
+            st.setString(2, subject.getSchool().getCd());
 
-		return sub;
-}
-	public List<Subject> filter(School school) throws Exception {
-		List<Subject> list = new ArrayList<>();
-		Connection con = getConnection();
-		PreparedStatement statement = null;
-
-		try {
-
-			statement = con.prepareStatement(
-					"SELECT * FROM SUBJECT WHERE SCHOOL_CD=?"
-					);
-			statement.setString(1, school.getCd());
-			ResultSet resultSet = statement.executeQuery();
-
-
-			while (resultSet.next()) {
-				Subject sub = new Subject();
-				sub.setCd(resultSet.getString("cd"));
-				sub.setName(resultSet.getString("name"));
-
-				sub.setSchool(school);
-
-				list.add(sub);
-			}
-		} catch (Exception e){
-			throw e;
-
-		} finally {
-			if (statement != null) statement.close();
-			if (con != null) con.close();
-		}
-
-		return list;
-	}
-
-	public boolean save(Subject subject) throws Exception {
-
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-
-		try {
-
-				statement = connection.prepareStatement(
-						"INSERT INTO SUBJECT " +
-						"VALUES(?,?,?)"
-					);
-					statement.setString(1, subject.getSchool().getCd());
-					statement.setString(2, subject.getCd());
-					statement.setString(3, subject.getName());
-
-					statement.executeUpdate();
-
-
-
-		} finally {
-			if (statement != null) statement.close();
-			if (connection != null) connection.close();
-		}
-
-		return true;
-
-	}
-
-	public boolean delete(Subject subject) throws Exception {
-	    Connection con = getConnection();
-	    PreparedStatement st = null;
-	    try {
-	        st = con.prepareStatement("DELETE FROM SUBJECT"
-	        		+ "WHERE CD=?");
-	        st.setString(1, subject.getCd());
-
-	        st.executeUpdate();
-	        return true;
-	    } finally {
-	        if (st != null) st.close();
-	        if (con != null) con.close();
-	    }
-	}
+            int rowsDeleted = st.executeUpdate();
+            return rowsDeleted > 0;
+        } finally {
+            if (st != null) st.close();
+            if (con != null) con.close();
+        }
+    }
 }

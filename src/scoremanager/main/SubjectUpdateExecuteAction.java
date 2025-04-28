@@ -1,5 +1,3 @@
-
-
 // 各メソッドをインポート
 package scoremanager.main;
 
@@ -20,7 +18,7 @@ public class SubjectUpdateExecuteAction extends Action {
         String cd = request.getParameter("cd");
         String name = request.getParameter("name");
 
-        // バリデーション
+        // init
         boolean hasError = false;
         java.util.Map<String, String> errors = new java.util.HashMap<>();
 
@@ -31,7 +29,6 @@ public class SubjectUpdateExecuteAction extends Action {
 
         if (hasError) {
             request.setAttribute("errors", errors);
-            request.setAttribute("cd", cd);
             request.setAttribute("name", name);
             request.getRequestDispatcher("subject_update.jsp").forward(request, response);
             return;

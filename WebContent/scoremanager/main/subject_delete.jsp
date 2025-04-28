@@ -20,12 +20,12 @@
 		</div>
 		</form>
 		<div class="d-flex justify-content-end gap-1">
-			<form action="StudentDeleteExcite.action" method="post" class="d-inline">
+			<form action="SubjectDeleteExcite.action" method="post" class="d-inline">
 				<input type="hidden" name="cd" value="${subject.cd}">
 				<input class="btn btn-danger" type="submit" value="削除する">
 			</form>
 
-			<form action="StudentList.action" method="get">
+			<form action="SubjectList.action" method="get">
 			    <input class="btn btn-secondary" type="submit" value="キャンセル">
 			</form>
 		</div>
