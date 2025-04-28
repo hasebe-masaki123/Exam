@@ -20,7 +20,7 @@
 		</div>
 		</form>
 		<div class="d-flex justify-content-end gap-1">
-			<form action="SubjectDeleteExcite.action" method="post" class="d-inline">
+			<form action="SubjectDeleteExecute.action" method="post" class="d-inline">
 				<input type="hidden" name="cd" value="${subject.cd}">
 				<input class="btn btn-danger" type="submit" value="削除する">
 			</form>

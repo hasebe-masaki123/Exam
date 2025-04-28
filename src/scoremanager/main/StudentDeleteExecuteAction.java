@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.SchoolDao;
 import tool.Action;
 
-public class StudentDeleteExciteAction extends Action{
+public class StudentDeleteExecuteAction extends Action{
 
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response

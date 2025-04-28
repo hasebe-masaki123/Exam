@@ -13,7 +13,7 @@ import bean.Teacher;
 import dao.StudentDao;
 import tool.Action;
 
-public class StudentCreateExciteAction extends Action{
+public class StudentCreateExecuteAction extends Action{
 
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response

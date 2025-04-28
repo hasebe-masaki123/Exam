@@ -28,7 +28,7 @@
 </div>
 
 <div class="d-flex justify-content-end gap-1">
-	<form action="StudentDeleteExcite.action" method="post" class="d-inline">
+	<form action="StudentDeleteExecute.action" method="post" class="d-inline">
 		<input type="hidden" name="no" value="${no }">
 		<input class="btn btn-danger" type="submit" value="削除する">
 	</form>

@@ -13,7 +13,7 @@
 
 
 
-<form action="StudentCreateExcite.action">
+<form action="StudentCreateExecute.action">
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="ent_year">入学年度</label>
 		<select class="form-control" id="ent_year" name="ent_year">

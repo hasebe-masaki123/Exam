@@ -71,7 +71,7 @@ public class SubjectDao extends Dao {
         PreparedStatement statement = null;
 
         try {
-												if(subject.getCd() != null) {
+			if(subject.getCd() != null) {
             statement = connection.prepareStatement("INSERT INTO SUBJECT (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)");
             statement.setString(1, subject.getSchool().getCd());
             statement.setString(2, subject.getCd());
@@ -79,8 +79,8 @@ public class SubjectDao extends Dao {
 
             statement.executeUpdate();
             connection.close();
-								} else {
-									   statement = connection.prepareStatement(
+			} else {
+		   statement = connection.prepareStatement(
                 "UPDATE SUBJECT SET NAME = ? WHERE CD = ? AND SCHOOL_CD = ?"
             );
             statement.setString(1, subject.getName());
@@ -89,7 +89,7 @@ public class SubjectDao extends Dao {
 
             int rowsUpdated = statement.executeUpdate();
             return rowsUpdated > 0;
-												}
+		}
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();

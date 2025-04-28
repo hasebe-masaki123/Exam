@@ -10,7 +10,7 @@ import bean.Teacher;
 import dao.StudentDao;
 import tool.Action;
 
-public class StudentUpdateExciteAction  extends Action{
+public class StudentUpdateExecuteAction  extends Action{
 
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
