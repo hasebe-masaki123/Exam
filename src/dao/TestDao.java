@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,16 +248,59 @@ public class TestDao extends Dao {
 		}
 	}
 
-	public boolean delete(List<Test> list) throws Exception {
+	public void insert(String studentNo, List<Subject> subjectList, School school, String classNum) throws Exception {
 
-		// 機能なし
-		return true;
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			for (Subject subject : subjectList) {
+				for (int no = 1; no <= 2; no++) {
+
+					statement = connection.prepareStatement(
+							"INSERT INTO TEST " +
+							"VALUES(?,?,?,?,?,?)"
+					);
+
+					statement.setString(1, studentNo);
+					statement.setString(2, subject.getCd());
+					statement.setString(3, school.getCd());
+					statement.setInt(4, no);
+					statement.setNull(5, Types.INTEGER);
+					statement.setString(6, classNum);
+
+					statement.executeUpdate();
+
+				}
+			}
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+
+
 	}
 
-	@SuppressWarnings("unused")
-	private boolean delete(Test test, Connection connection) throws Exception {
+	public void delete(String studentNo) throws Exception {
 
-		// 機能なし
-		return true;
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			statement = connection.prepareStatement(
+					"DELETE FROM TEST "
+					+
+					"WHERE STUDENT_NO = ?"
+			);
+
+			statement.setString(1, studentNo);
+
+			statement.executeUpdate();
+
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+
 	}
 }

@@ -9,6 +9,7 @@ import tool.Action;
 
 public class StudentDeleteAction extends Action{
 
+	@Override
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			) throws Exception {

@@ -1,40 +1,42 @@
-//package scoremanager.main;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import bean.Test;
-//import dao.TestDao;
-//import tool.Action;
-//
-//public class TestRegistExecuteAction extends Action {
-//  @Override
-//  public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-//    String studentNo = req.getParameter("student_no");
-//    String subjectCd = req.getParameter("subject_cd");
-//    String pointStr = req.getParameter("point");
-//
-//    if (studentNo == null || subjectCd == null || pointStr == null) {
-//      req.setAttribute("error", "入力値に不備があります。");
-//      req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-//      return;
-//    }
-//
-//    int point = Integer.parseInt(pointStr);
-//
-//    Test test = new Test();
-//    test.getStudent().setNo(studentNo);
-//    test.getSubject().setCd(subjectCd);
-//    test.setPoint(point);
-//
-//    TestDao testDao = new TestDao();
-//    boolean success = testDao.save(test);
-//
-//    if (success) {
-//      req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
-//    } else {
-//      req.setAttribute("error", "登録に失敗しました。");
-//      req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-//    }
-//  }
-//}
+package scoremanager.main;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Test;
+import dao.TestDao;
+import tool.Action;
+
+public class TestRegistExecuteAction extends Action {
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		HttpSession session = req.getSession();
+
+		List<Test> testList =(List<Test>) session.getAttribute("test");
+		String[] points = req.getParameterValues("points");
+
+		for  (int i = 0; i < testList.size(); i++) {
+			testList.get(i).setPoint(Integer.parseInt(points[i]));
+		}
+
+		TestDao tesDao = new TestDao();
+
+		boolean success = tesDao.save(testList);
+
+		req.getRequestDispatcher("").forward(req, res);
+
+
+
+
+
+
+
+
+		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
+  }
+}
