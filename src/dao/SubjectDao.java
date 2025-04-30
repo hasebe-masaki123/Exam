@@ -69,35 +69,53 @@ public class SubjectDao extends Dao {
     public boolean save(Subject subject) throws Exception {
         Connection connection = getConnection();
         PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
         try {
-			if(subject.getCd() != null) {
-            statement = connection.prepareStatement("INSERT INTO SUBJECT (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)");
-            statement.setString(1, subject.getSchool().getCd());
-            statement.setString(2, subject.getCd());
-            statement.setString(3, subject.getName());
-
-            statement.executeUpdate();
-            connection.close();
-			} else {
-		   statement = connection.prepareStatement(
-                "UPDATE SUBJECT SET NAME = ? WHERE CD = ? AND SCHOOL_CD = ?"
+            // すでに存在するか確認（cd + school_cd）
+            statement = connection.prepareStatement(
+                "SELECT COUNT(*) FROM SUBJECT WHERE CD = ? AND SCHOOL_CD = ?"
             );
-            statement.setString(1, subject.getName());
-            statement.setString(2, subject.getCd());
-            statement.setString(3, subject.getSchool().getCd());
+            statement.setString(1, subject.getCd());
+            statement.setString(2, subject.getSchool().getCd());
+            resultSet = statement.executeQuery();
 
-            int rowsUpdated = statement.executeUpdate();
-            return rowsUpdated > 0;
-		}
+            boolean exists = false;
+            if (resultSet.next()) {
+                exists = resultSet.getInt(1) > 0;
+            }
+
+            resultSet.close();
+            statement.close();
+
+            if (exists) {
+                // UPDATE 処理
+                statement = connection.prepareStatement(
+                    "UPDATE SUBJECT SET NAME = ? WHERE CD = ? AND SCHOOL_CD = ?"
+                );
+                statement.setString(1, subject.getName());
+                statement.setString(2, subject.getCd());
+                statement.setString(3, subject.getSchool().getCd());
+
+            } else {
+                // INSERT 処理
+                statement = connection.prepareStatement(
+                    "INSERT INTO SUBJECT (SCHOOL_CD, CD, NAME) VALUES (?, ?, ?)"
+                );
+                statement.setString(1, subject.getSchool().getCd());
+                statement.setString(2, subject.getCd()); // ← null でないことを確認
+                statement.setString(3, subject.getName());
+            }
+
+            int result = statement.executeUpdate();
+            return result > 0;
+
         } finally {
+            if (resultSet != null) resultSet.close();
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
-
-        return true;
     }
-
     public boolean delete(Subject subject) throws Exception {
         Connection con = getConnection();
         PreparedStatement st = null;
