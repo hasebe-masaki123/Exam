@@ -18,6 +18,7 @@ import tool.Action;
 
 public class StudentListAction extends Action{
 
+	@Override
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
@@ -36,7 +37,6 @@ public class StudentListAction extends Action{
 		//日時データを取得
 		LocalDate todaysDate = LocalDate.now();
 		int year = todaysDate.getYear();
-
 
 		//セッションのユーザーデータから所属している学校の生徒一覧用データを取得
 		StudentDao stuDao = new StudentDao();

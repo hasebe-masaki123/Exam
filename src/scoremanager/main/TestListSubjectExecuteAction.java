@@ -18,6 +18,7 @@ import tool.Action;
 
 public class TestListSubjectExecuteAction extends Action{
 
+	@Override
 	public void  execute(
 			HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
@@ -58,14 +59,16 @@ public class TestListSubjectExecuteAction extends Action{
 
 		if (entYear != 0 && !classNum.equals("0") && subject != null && !subject.getCd().equals("0") ) {
 
-			TestListSubjectDao tLsubDao = new TestListSubjectDao();
-			List<TestListSubject> subjectList = tLsubDao.filter(entYear, classNum, subject, school);
+			TestListSubjectDao tlsDao = new TestListSubjectDao();
+			List<TestListSubject> subjectList = tlsDao.filter(entYear, classNum, subject, school);
+			System.out.println(1);
 
 			request.setAttribute("list", subjectList);
 
 			request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
 		} else {
 			//エラーメッセージを設定
+			System.out.println(2);
 			Map<String, String> errors = new HashMap<>();
 			errors.put("sj", "入学年度とクラスと科目を指定してください");
 			request.setAttribute("errors", errors);

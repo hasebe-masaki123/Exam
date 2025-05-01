@@ -101,7 +101,16 @@
 				<td>${student_score.subjectName}</td>
 				<td>${student_score.subjectCd}</td>
 				<td>${student_score.num}</td>
-				<td>${student_score.point}</td>
+				<td>
+					<c:choose>
+						<c:when test="${student_score.point != null}">
+							${student_score.point }
+						</c:when>
+						<c:otherwise>
+							-
+						</c:otherwise>
+					</c:choose>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

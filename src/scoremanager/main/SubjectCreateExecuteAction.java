@@ -11,6 +11,7 @@ import tool.Action;
 
 public class SubjectCreateExecuteAction extends Action {
 
+	@Override
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			) throws Exception {
@@ -25,7 +26,10 @@ public class SubjectCreateExecuteAction extends Action {
      // エラー表示
         java.util.Map<String, String> errors = new java.util.HashMap<>();
         SubjectDao subDao = new SubjectDao();
-
+        /*
+		 * 入力されを情報を基に登録
+		 * 学生番号の重複、入力の不備がある場合エラーメッセージを設定し再入力を実行
+		 */
 		if (cd.length() != 3)  {
 			errors.put("1", "科目コードは3文字で入力してください");
 			request.setAttribute("errors", errors);

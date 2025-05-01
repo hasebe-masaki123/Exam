@@ -1,6 +1,7 @@
 package scoremanager.main;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +10,16 @@ import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Student;
+import bean.Subject;
 import bean.Teacher;
 import dao.StudentDao;
+import dao.SubjectDao;
+import dao.TestDao;
 import tool.Action;
 
 public class StudentCreateExecuteAction extends Action{
 
+	@Override
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			) throws Exception {
@@ -31,6 +36,16 @@ public class StudentCreateExecuteAction extends Action{
 		String class_num = request.getParameter("class_num");
 
 		School school = teacher.getSchool();
+
+		/*
+		 *	学生ごとのTESTテーブルを作成
+		  */
+		SubjectDao subDao = new SubjectDao();
+		List<Subject> subjectList = subDao.filter(teacher.getSchool());
+
+		TestDao tesDao = new TestDao();
+		tesDao.insert(student_no, subjectList, school, class_num);
+
 
 
 		//再入力用に学生情報をリクエストパラメータに保持

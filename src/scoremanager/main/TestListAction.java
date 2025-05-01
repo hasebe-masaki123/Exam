@@ -16,6 +16,7 @@ import tool.Action;
 
 public class TestListAction extends Action {
 
+	@Override
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 	) throws Exception {
@@ -42,7 +43,7 @@ public class TestListAction extends Action {
 		SubjectDao subDao = new SubjectDao();
 		List<Subject> subjects = subDao.filter(teacher.getSchool());
 
-//		System.out.println(subjects);
+		System.out.println(subjects);
 
 		session.setAttribute("class_num_set", classList);
 		session.setAttribute("ent_year_set", entYearSet);

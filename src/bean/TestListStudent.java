@@ -5,7 +5,7 @@ public class TestListStudent {
 	String subjectName;
 	String subjectCd;
 	int num;
-	int point;
+	Integer point;
 
 
 	public String getSubjectName() {
@@ -26,10 +26,10 @@ public class TestListStudent {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getPoint() {
+	public Integer getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(Integer point) {
 		this.point = point;
 	}
 }

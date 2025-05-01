@@ -17,10 +17,10 @@ public class TestListStudentDao extends Dao {
 
 		while (rSet.next()) {
 			TestListStudent testListStudent = new TestListStudent();
-			testListStudent.setSubjectCd(rSet.getString("subject_cd"));
-			testListStudent.setSubjectName(rSet.getString("subject_name"));
-			testListStudent.setNum(rSet.getInt("no"));
-			testListStudent.setPoint(rSet.getInt("point"));
+			testListStudent.setSubjectCd(rSet.getString("SUBJECT.CD"));
+			testListStudent.setSubjectName(rSet.getString("SUBJECT.NAME"));
+			testListStudent.setNum(rSet.getInt("TEST.NO"));
+			testListStudent.setPoint((Integer) rSet.getObject("TEST.POINT"));
 
 			list.add(testListStudent);
 		}
@@ -36,16 +36,19 @@ public class TestListStudentDao extends Dao {
 		PreparedStatement statement = null;
 
 		try {
-			statement = connection.prepareStatement(
-					"SELECT * FROM TEST "
-					+
-					"WHERE STUDENT_NO = ?"
-			);
-			statement.setString(1, student.getNo());
+			if (student != null) {
 
-			ResultSet resultSet = statement.executeQuery();
-			list = postFilter(resultSet);
 
+				statement = connection.prepareStatement(
+							"SELECT SUBJECT.CD, SUBJECT.NAME, TEST.NO, TEST.POINT FROM SUBJECT "
+						+ "JOIN TEST ON SUBJECT.CD = TEST.SUBJECT_CD "
+						+ "WHERE TEST.STUDENT_NO = ?"
+				);
+				statement.setString(1, student.getNo());
+
+				ResultSet resultSet = statement.executeQuery();
+				list = postFilter(resultSet);
+			}
 
 		} catch (Exception e){
 			throw e;

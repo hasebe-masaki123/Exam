@@ -21,12 +21,12 @@
 	</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >科目名</label>
-		<input class="form-control" type="text" value="${name }" id="name" name="name" maxlength=10 placeholder="科目名を入力してください" required>
+		<input class="form-control" type="text" value="${name }" id="name" name="name" maxlength=20 placeholder="科目名を入力してください" required>
 	</div>
 
-	<p><input class="btn btn-secondary" type="submit" value="登録">
+	<input class="btn btn-secondary" type="submit" value="登録">
 </form>
-	<a href="SubjectList.action">戻る</a></p>
+<a href="SubjectList.action">戻る</a>
 
 
 </section>
