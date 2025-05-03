@@ -29,6 +29,8 @@ public class ClassNumDao extends Dao{
 					"SELECT CLASS_NUM FROM CLASS_NUM "
 					+
 					"WHERE SCHOOL_CD = ?"
+					+
+					"ORDER BY CLASS_NUM ASC"
 					);
 			sta.setString(1, school.getCd());
 

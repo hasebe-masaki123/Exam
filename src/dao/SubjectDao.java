@@ -45,7 +45,7 @@ public class SubjectDao extends Dao {
         PreparedStatement statement = null;
 
         try {
-            statement = con.prepareStatement("SELECT * FROM SUBJECT WHERE SCHOOL_CD = ?");
+            statement = con.prepareStatement("SELECT * FROM SUBJECT WHERE SCHOOL_CD = ? ORDER BY CD ASC");
             statement.setString(1, school.getCd());
             ResultSet resultSet = statement.executeQuery();
 

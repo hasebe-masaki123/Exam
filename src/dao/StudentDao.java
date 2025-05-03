@@ -84,7 +84,7 @@ public class StudentDao extends Dao{
 
 		try {
 			statement = connection.prepareStatement(
-					"SELECT * FROM  STUDENT WHERE ENT_YEAR = ? AND CLASS_NUM = ?  AND (IS_ATTEND IS TRUE OR IS_ATTEND IS ?)"
+					"SELECT * FROM  STUDENT WHERE ENT_YEAR = ? AND CLASS_NUM = ?  AND (IS_ATTEND IS TRUE OR IS_ATTEND IS ?) ORDER BY NO ASC"
 			);
 			statement.setInt(1,entYear);
 			statement.setString(2, classNum);

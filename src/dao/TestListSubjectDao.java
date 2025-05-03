@@ -21,7 +21,10 @@ public class TestListSubjectDao extends Dao{
 			 testListSubject.setStudentNo(rSet.getString("STUDENT.NO"));
 			 testListSubject.setStudentName(rSet.getString("STUDENT.NAME"));
 			 testListSubject.setClassNum(rSet.getString("TEST.CLASS_NUM"));
-			 testListSubject.putPoint(rSet.getInt("TEST.NO"),rSet.getInt("TEST.POINT"));
+
+			 testListSubject.putPoint(1,rSet.getInt("POINT1"));
+			 testListSubject.putPoint(2,rSet.getInt("POINT2"));
+
 
 			 list.add(testListSubject);
 
@@ -38,10 +41,13 @@ public class TestListSubjectDao extends Dao{
 
 		try {
 			statement = connection.prepareStatement(
-						"SELECT STUDENT.ENT_YEAR, STUDENT.NO, STUDENT.NAME,"
-					+ " TEST.CLASS_NUM, TEST.NO, TEST.POINT  FROM STUDENT  "
-					+ "JOIN  TEST ON STUDENT.NO = TEST.STUDENT_NO "
-					+ "WHERE STUDENT.ENT_YEAR = ? AND TEST.CLASS_NUM = ? AND TEST.SUBJECT_CD = ? AND TEST.SCHOOL_CD = ?"
+					"SELECT STUDENT.ENT_YEAR, STUDENT.NO, STUDENT.NAME, TEST.CLASS_NUM,"
+					+ "MAX(CASE WHEN TEST.NO = 1 THEN TEST.POINT END) AS POINT1, "
+					+ "MAX(CASE WHEN TEST.NO = 2 THEN TEST.POINT END) AS POINT2 "
+					+ "FROM STUDENT JOIN TEST ON STUDENT.NO = TEST.STUDENT_NO "
+					+ "WHERE STUDENT.ENT_YEAR = ? AND TEST.CLASS_NUM = ? AND TEST.SUBJECT_CD = ? AND TEST.SCHOOL_CD = ? "
+					+ "GROUP BY STUDENT.ENT_YEAR, STUDENT.NO, STUDENT.NAME, TEST.CLASS_NUM "
+					+ "ORDER BY STUDENT.NO ASC;"
 			);
 			statement.setInt(1,entYear);
 			statement.setString(2, classNum);
