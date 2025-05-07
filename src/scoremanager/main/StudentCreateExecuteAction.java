@@ -44,7 +44,7 @@ public class StudentCreateExecuteAction extends Action{
 		List<Subject> subjectList = subDao.filter(teacher.getSchool());
 
 		TestDao tesDao = new TestDao();
-		tesDao.insert(student_no, subjectList, school, class_num);
+		tesDao.stuInsert(student_no, subjectList, school, class_num);
 
 
 

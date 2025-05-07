@@ -1,12 +1,17 @@
 package scoremanager.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
+import dao.StudentDao;
 import dao.SubjectDao;
+import dao.TestDao;
 import tool.Action;
 
 public class SubjectCreateExecuteAction extends Action {
@@ -33,7 +38,6 @@ public class SubjectCreateExecuteAction extends Action {
 		if (cd.length() != 3)  {
 			errors.put("1", "科目コードは3文字で入力してください");
 			request.setAttribute("errors", errors);
-			System.out.println("1");
 			request.getRequestDispatcher("subject_create.jsp").forward(request, response);
 
 		} else {
@@ -49,8 +53,15 @@ public class SubjectCreateExecuteAction extends Action {
         subject.setName(name);
         subject.setSchool(teacher.getSchool());
 
-        SubjectDao dao = new SubjectDao();
-        dao.save(subject);
+        subDao.save(subject);
+
+      //TESTテーブルを作成
+        StudentDao stuDao = new StudentDao();
+        List<Student> stuList = stuDao.filter(teacher.getSchool(), true);
+
+
+        TestDao testDao =new TestDao();
+        testDao.subInsert(stuList, subject, teacher.getSchool());
 
 
         request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);

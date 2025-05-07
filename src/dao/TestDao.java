@@ -248,7 +248,15 @@ public class TestDao extends Dao {
 		}
 	}
 
-	public void insert(String studentNo, List<Subject> subjectList, School school, String classNum) throws Exception {
+	/**
+	 * 学生登録用
+	 * @param studentNo
+	 * @param subjectList
+	 * @param school
+	 * @param classNum
+	 * @throws Exception
+	 */
+	public void stuInsert(String studentNo, List<Subject> subjectList, School school, String classNum) throws Exception {
 
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
@@ -280,6 +288,49 @@ public class TestDao extends Dao {
 
 
 	}
+
+	/**
+	 * 科目登録用
+	 * @param stuList
+	 * @param sub
+	 * @throws Exception
+	 */
+	public void subInsert(List<Student> stuList, Subject subject, School school) throws Exception {
+
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			for (Student student : stuList) {
+				for (int no = 1; no <= 2; no++) {
+
+					statement = connection.prepareStatement(
+							"INSERT INTO TEST " +
+							"VALUES(?,?,?,?,?,?)"
+					);
+
+					statement.setString(1, student.getNo());
+					statement.setString(2, subject.getCd());
+					statement.setString(3, school.getCd());
+					statement.setInt(4, no);
+					statement.setNull(5, Types.INTEGER);
+					statement.setString(6, student.getClassNum());
+
+
+					statement.executeUpdate();
+
+				}
+			}
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+
+
+	}
+
+
+
 
 	public void delete(String studentNo) throws Exception {
 
