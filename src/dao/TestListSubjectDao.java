@@ -49,7 +49,7 @@ public class TestListSubjectDao extends Dao{
 					+ "GROUP BY STUDENT.ENT_YEAR, STUDENT.NO, STUDENT.NAME, TEST.CLASS_NUM "
 					+ "ORDER BY STUDENT.NO ASC;"
 			);
-			statement.setInt(1,entYear);
+			statement.setInt(1, entYear);
 			statement.setString(2, classNum);
 			statement.setString(3, subject.getCd());
 			statement.setString(4, school.getCd());
