@@ -13,7 +13,7 @@
 
 
 
-<form action="SubjectCreateExecute.action">
+<form action="SubjectCreateExecute.action" method="post">
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="cd">科目コード</label>
 		<input class="form-control" type="text" value="${cd }" id="cd"  name="cd" maxlength=10 placeholder="科目コードを入力してください" required>

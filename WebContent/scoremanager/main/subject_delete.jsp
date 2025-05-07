@@ -7,7 +7,7 @@
     <section class="container mt-4">
       <h2 class="h4 mb-4 text-danger">科目削除確認</h2>
 
-      <p>以下の科目を削除してもよろしいですか？</p>
+      <p>以下の学生を削除してもよろしいですか？</p>
 
       <form action="SubjectDeleteExecute.action" method="post">
    		<div class="d-flex flex-column mb-3">

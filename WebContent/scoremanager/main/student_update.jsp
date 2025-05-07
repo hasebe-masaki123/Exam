@@ -11,7 +11,7 @@
 <section class="me-4">
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
 
-<form action="StudentUpdateExecute.action">
+<form action="StudentUpdateExecute.action" method="post">
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="ent_year">入学年度</label>
 		<input class="form-control border-0" type="text" id="ent_year" name="ent_year" value="${ent_year }" readonly>

@@ -9,9 +9,9 @@
 <c:param name="content">
 
 <section class="me-4">
-<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報削除</h2>
+<h2 class="h4 mb-4 text-danger">学生削除確認</h2>
 
-<p class="bg-danger bg-opacity-10">以下の学生情報を削除しますか？</p>
+<p>以下の科目を削除してもよろしいですか？</p>
 
 <div class="d-flex flex-column mb-3">
 	<label class="form-label" >学生番号</label>
@@ -33,7 +33,7 @@
 		<input class="btn btn-danger" type="submit" value="削除する">
 	</form>
 
-	<form action="StudentList.action" method="get">
+	<form action="StudentList.action" method="post">
 	    <input class="btn btn-secondary" type="submit" value="キャンセル">
 	</form>
 </div>
