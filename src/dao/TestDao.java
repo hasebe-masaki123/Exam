@@ -247,7 +247,6 @@ public class TestDao extends Dao {
 			return false;
 		}
 	}
-
 	/**
 	 * 学生登録用
 	 * @param studentNo
