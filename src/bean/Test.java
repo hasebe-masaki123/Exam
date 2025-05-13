@@ -4,9 +4,8 @@ package bean;
 public class Test {
 
 	int no;
-	String name;
+	Integer point;
 	String classNum;
-	int point;
 	School school;
 	Student student;
 	Subject subject;
@@ -17,23 +16,17 @@ public class Test {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getName() {
-		return name;
+	public Integer getPoint() {
+		return point;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPoint(Integer point) {
+		this.point = point;
 	}
 	public String getClassNum() {
 		return classNum;
 	}
 	public void setClassNum(String classNum) {
 		this.classNum = classNum;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
 	}
 	public School getSchool() {
 		return school;

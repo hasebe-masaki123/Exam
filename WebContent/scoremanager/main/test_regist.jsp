@@ -20,7 +20,7 @@
 			<select class="form-select" id="test-f1-select" name="f1">
 				<option value="0">--------</option>
 				<c:forEach var="year" items="${ent_year_set}">
-					<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
+					<option value="${year}" <c:if test="${year==param.f1}">selected</c:if>>${year}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -30,7 +30,7 @@
 			<select class="form-select" id="test-f2-select" name="f2">
 				<option value="0">--------</option>
 				<c:forEach var="num" items="${class_num_set}">
-					<option value="${num}" <c:if test="${num==f2}">selected</c:if>>${num}</option>
+					<option value="${num}" <c:if test="${num==param.f2}">selected</c:if>>${num}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -39,8 +39,8 @@
 			<label class="form-label" for="test-f3-select">科目</label>
 			<select class="form-select" id="test-f3-select" name="f3">
 				<option value="0">--------</option>
-				<c:forEach var="subject" items="${subject_set}">
-					<option value="${subject.cd}" <c:if test="${subject.cd==f3}">selected</c:if>>${subject.getName()}</option>
+				<c:forEach var="subject" items="${subject_list_set}">
+					<option value="${subject.cd}" <c:if test="${subject.cd==param.f3}">selected</c:if>>${subject.getName()}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -49,22 +49,25 @@
 			<label class="form-label" for="test-f4-select">回数</label>
 			<select class="form-select" id="test-f4-select" name="f4">
 				<option value="0">--------</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
+				<c:forEach var="i" begin="1" end="2">
+					<option value="${i}" <c:if test="${i==param.f4}">selected</c:if>>${i}</option>
+				</c:forEach>
 			</select>
 		</div>
 
 		<div class="col-md-2 d-flex align-items-end">
 			<button class="btn btn-secondary" id="filter-button">検索</button>
 		</div>
+
+		<div class="col-12 mt-2 text-warning">${errors.get("omission")}</div>
 	</form>
 
 </div>
 
 <c:choose>
-	<c:when test="${list != null }">
-		<div><p>科目：${f3 }(${f4 })</p></div>
-		<form action="TestRegistExecute.action">
+	<c:when test="${test_list_set.size() > 0 }">
+		<div><p>科目：${select_sub.name}(${param.f4 }回)</p></div>
+		<form action="TestRegistExecute.action" method="post">
 			<table class="table table-hover">
 			<tr>
 				<th>入学年度</th>
@@ -73,29 +76,40 @@
 				<th>氏名</th>
 				<th>点数</th>
 			</tr>
-			<c:forEach var="item" items="${test}">
+			<c:forEach var="test" items="${test_list_set}">
 				<tr>
-					<td>${f1}</td>
+					<td>${test.student.entYear}</td>
 
-					<td>${f2}</td>
+					<td>${test.classNum}</td>
 
-					<td>${item.student.no}</td>
+					<td>${test.student.no}</td>
 
-					<td>${item.student.name}</td>
+					<td>${test.student.name}</td>
 
 					<td>
-						<input type="number" name="points"
-							<c:if test="${item.point != null}">
-								value="${item.point}"
-							</c:if> />
+						<input type="hidden" name="studentNos" value="${test.student.no }">
+						<input type="text" name="points"
+							<c:if test="${test.point != null }">value="${test.point}"</c:if>/>
 
-							<%-- エラーメッセージ表示 --%>
-							<div class="mt-2 text-warning">${errors.get("1") }</div>
+							<%-- 学生番号をキーにしてエラーがあるか確認 --%>
+							<c:if test="${errors.get(test.student.no) != null}">
+								<div class="mt-2 text-warning">${errors.get(test.student.no)}</div>
+							</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 			</table>
+
+			<input type="hidden" name="subjectCd" value="${select_sub.cd}">
+			<input type="hidden" name="count" value="${param.f4 }">
+
+			<div class="col-md-2 d-flex align-items-end">
+				<button class="btn btn-secondary">登録して終了</button>
+			</div>
 		</form>
+	</c:when>
+	<c:when test="${test_list_set.size() == 0 }">
+		<div>学生情報が存在しませんでした</div>
 	</c:when>
 </c:choose>
 

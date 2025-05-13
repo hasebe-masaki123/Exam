@@ -61,6 +61,7 @@ public class TestListSubjectExecuteAction extends Action{
 			List<TestListSubject> subjectList = tlsDao.filter(entYear, classNum, subject, school);
 
 			request.setAttribute("list", subjectList);
+			System.out.println(subjectList.size());
 
 			request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
 		} else {

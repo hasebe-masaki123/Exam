@@ -16,7 +16,7 @@
 	<!-- 科目情報フォーム -->
 	<form action="TestListSubjectExecute.action?f1=${f1}&f2=${f2}&f3=${f3}&f=${f}" method="get" class="mb-4 border-bottom">
 		<input type="hidden" name="f" value="sj">
-		<div class="row mb-2 d-flex align-items-center">
+		<div class="row mb-2 d-flex align-items-end">
 			<div class="col-2 text-center mt-auto">
 				<p>科目情報</p>
 			</div>
