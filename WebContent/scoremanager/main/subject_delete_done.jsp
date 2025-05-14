@@ -9,7 +9,9 @@
 <section class="me-4">
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
 
-<p class="mb-3 text-center bg-success bg-opacity-25 py-2 px-4">削除が完了しました</p>
+<p class="mb-5 text-center bg-success bg-opacity-25 py-2 px-4">削除が完了しました</p>
+
+<a href="SubjectList.action">科目一覧</a>
 
 
 </section>

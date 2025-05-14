@@ -9,8 +9,11 @@
 <section class="me-4">
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 
-<p class="mb-3 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
+<p class="mb-5 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
 
+
+<a href="TestRegist.action" class="me-5">戻る</a>
+<a href="TestList.action">成績参照</a>
 
 </section>
 </c:param>

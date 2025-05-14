@@ -11,9 +11,9 @@
 <section class="me-4">
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報登録</h2>
 
-<p class="mb-3 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
+<p class="mb-5 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
 
-
+<a href="StudentList.action">学生一覧</a>
 </section>
 </c:param>
 </c:import>

@@ -52,7 +52,7 @@ public class TestRegistExecuteAction extends Action {
             } else {
             	int point = Integer.parseInt(pointStr.trim());
                 if (point < 0 || point > 100) {
-                		errors.put(studentNos[i], "0~100で入力してください");
+                		errors.put(studentNos[i], "0~100の範囲で入力してください");
                 		isValidPoint = false;
                     }
                     points[i] = point;
