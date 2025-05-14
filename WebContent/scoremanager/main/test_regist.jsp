@@ -13,14 +13,14 @@
 
 <div class="container border mx-3 mb-3 py-2 rounded" id="filter">
 
-	<form method="get" class="mb-4 row">
+	<form action="TestRegist.action" class="mb-4 row">
 
 		<div class="col-md-2">
 			<label class="form-label" for="test-f1-select">入学年度</label>
 			<select class="form-select" id="test-f1-select" name="f1">
 				<option value="0">--------</option>
 				<c:forEach var="year" items="${ent_year_set}">
-					<option value="${year}" <c:if test="${year==param.f1}">selected</c:if>>${year}</option>
+					<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -30,7 +30,7 @@
 			<select class="form-select" id="test-f2-select" name="f2">
 				<option value="0">--------</option>
 				<c:forEach var="num" items="${class_num_set}">
-					<option value="${num}" <c:if test="${num==param.f2}">selected</c:if>>${num}</option>
+					<option value="${num}" <c:if test="${num==f2}">selected</c:if>>${num}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -40,7 +40,7 @@
 			<select class="form-select" id="test-f3-select" name="f3">
 				<option value="0">--------</option>
 				<c:forEach var="subject" items="${subject_list_set}">
-					<option value="${subject.cd}" <c:if test="${subject.cd==param.f3}">selected</c:if>>${subject.getName()}</option>
+					<option value="${subject.cd}" <c:if test="${subject.cd==f3}">selected</c:if>>${subject.name}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -50,7 +50,7 @@
 			<select class="form-select" id="test-f4-select" name="f4">
 				<option value="0">--------</option>
 				<c:forEach var="i" begin="1" end="2">
-					<option value="${i}" <c:if test="${i==param.f4}">selected</c:if>>${i}</option>
+					<option value="${i}" <c:if test="${i==f4}">selected</c:if>>${i}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -66,8 +66,14 @@
 
 <c:choose>
 	<c:when test="${test_list_set.size() > 0 }">
-		<div><p>科目：${select_sub.name}(${param.f4 }回)</p></div>
+		<div><p>科目：${select_sub.name}(${f4 }回)</p></div>
 		<form action="TestRegistExecute.action" method="post">
+
+			<input type="hidden" name="f1" value="${f1}">
+			<input type="hidden" name="f2" value="${f2}">
+			<input type="hidden" name="f3" value="${f3}">
+			<input type="hidden" name="f4" value="${f4}">
+
 			<table class="table table-hover">
 			<tr>
 				<th>入学年度</th>

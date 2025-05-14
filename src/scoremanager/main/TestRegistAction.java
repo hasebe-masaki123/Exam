@@ -50,6 +50,10 @@ public class TestRegistAction extends Action {
        subCd = req.getParameter("f3");
        countStr = req.getParameter("f4");
 
+       req.setAttribute("f1", entYearStr);
+       req.setAttribute("f2", classNum);
+       req.setAttribute("f3", subCd);
+       req.setAttribute("f4", countStr);
 
 
         SubjectDao subDao = new SubjectDao();

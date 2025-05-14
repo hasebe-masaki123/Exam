@@ -82,6 +82,14 @@ public class TestRegistExecuteAction extends Action {
             // 登録完了画面へ
             req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
         } else {
+
+        	// バリデーション失敗などで再表示する場合
+        	req.setAttribute("f1", req.getParameter("f1"));
+        	req.setAttribute("f2", req.getParameter("f2"));
+        	req.setAttribute("f3", req.getParameter("f3"));
+        	req.setAttribute("f4", req.getParameter("f4"));
+        	req.setAttribute("select_sub", subject);
+
         	req.setAttribute("errors", errors);
         	req.getRequestDispatcher("test_regist.jsp").forward(req, res);
         }
