@@ -8,6 +8,7 @@ import bean.School;
 import bean.Student;
 import bean.Teacher;
 import dao.StudentDao;
+import dao.TestDao;
 import tool.Action;
 
 public class StudentUpdateExecuteAction  extends Action{
@@ -50,6 +51,10 @@ public class StudentUpdateExecuteAction  extends Action{
 		//DBに更新する
 		StudentDao stuDao = new StudentDao();
 		stuDao.save(student);
+
+		TestDao tesDao = new TestDao();
+		tesDao.update(student);
+
 
 
 		request.getRequestDispatcher("student_update_done.jsp").forward(request, response);

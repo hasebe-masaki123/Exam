@@ -14,7 +14,7 @@ import bean.Test;
 
 public class TestDao extends Dao {
 
-    public Test get(Student student, Subject subject, School school, int no, Connection connection) throws Exception {
+    public Test gt(Student student, Subject subject, School school, int no, Connection connection) throws Exception {
         Test test = new Test();
         PreparedStatement statement = null;
 
@@ -210,6 +210,26 @@ public class TestDao extends Dao {
 			if (connection != null) connection.close();
 		}
 
+
+	}
+
+	public void update(Student student) throws Exception {
+
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			statement = connection.prepareStatement(
+					"UPDATE TEST SET CLASS_NUM = ? WHERE STUDENT_NO = ?"
+					);
+					statement.setString(1, student.getClassNum());
+					statement.setString(2, student.getNo());
+
+					statement.executeUpdate();
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
 
 	}
 
