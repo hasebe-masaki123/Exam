@@ -81,10 +81,10 @@ public class TestDao extends Dao {
         Connection connection = getConnection();
 
         String sql =
-           "SELECT STUDENT.NO, STUDENT.NAME, STUDENT.CLASS_NUM, STUDENT.ENT_YEAR, TEST.SUBJECT_CD, TEST.NO, TEST.POINT FROM TEST "
-           + "LEFT JOIN STUDENT ON TEST.STUDENT_NO = STUDENT.NO "
-           + "WHERE TEST.SUBJECT_CD = ? AND TEST.NO = ? AND STUDENT.ENT_YEAR = ? AND STUDENT.CLASS_NUM = ?"
-           + "ORDER BY STUDENT.NO ASC";
+			"SELECT STUDENT.NO, STUDENT.NAME, STUDENT.CLASS_NUM, STUDENT.ENT_YEAR, TEST.SUBJECT_CD, TEST.NO, TEST.POINT FROM TEST "
+			+ "LEFT JOIN STUDENT ON TEST.STUDENT_NO = STUDENT.NO "
+			+ "WHERE TEST.SUBJECT_CD = ? AND TEST.NO = ? AND STUDENT.ENT_YEAR = ? AND TEST.CLASS_NUM = ? "
+			+ "ORDER BY STUDENT.NO ASC;";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, subject.getCd());

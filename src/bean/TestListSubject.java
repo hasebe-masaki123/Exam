@@ -49,7 +49,7 @@ public class TestListSubject {
 
 	}
 
-	public void putPoint(int key, int value) {
+	public void putPoint(int key, Integer value) {
 		points.put(key, value);
 	}
 
