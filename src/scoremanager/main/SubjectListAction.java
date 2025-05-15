@@ -16,11 +16,13 @@ public class SubjectListAction extends Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+    	//セッションからユーザーデータを取得
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
-        SubjectDao dao = new SubjectDao();
-        List<Subject> subjects = dao.filter(teacher.getSchool());
+        //DBから科目一覧を取得
+        SubjectDao subDao = new SubjectDao();
+        List<Subject> subjects = subDao.filter(teacher.getSchool());
 
         request.setAttribute("subjects", subjects);
         request.getRequestDispatcher("subject_list.jsp").forward(request, response);

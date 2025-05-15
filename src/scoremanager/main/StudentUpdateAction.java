@@ -33,13 +33,8 @@ public class StudentUpdateAction extends Action{
 		Student student = stuDao.get(student_no);
 
 
-		request.setAttribute("ent_year", student.getEntYear());
-		request.setAttribute("no", student.getNo());
-		request.setAttribute("name", student.getName());
-		request.setAttribute("class_num", student.getClassNum());
-		request.setAttribute("is_attend", student.isAttend());
-
 		request.setAttribute("class_num_set", classList);
+		request.setAttribute("student", student);
 
 		request.getRequestDispatcher("student_update.jsp").forward(request, response);
 

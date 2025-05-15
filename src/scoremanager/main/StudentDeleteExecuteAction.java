@@ -21,7 +21,7 @@ public class StudentDeleteExecuteAction extends Action{
 		String student_no = request.getParameter("no");
 
 		stuDao.delete(student_no);
-		tesDao.delete(student_no);
+		tesDao.stuDelete(student_no);
 
 		request.getRequestDispatcher("student_delete_done.jsp").forward(request, response);
 

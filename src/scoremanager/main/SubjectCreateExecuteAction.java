@@ -1,6 +1,8 @@
 package scoremanager.main;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,14 +30,19 @@ public class SubjectCreateExecuteAction extends Action {
 		String cd = request.getParameter("cd");
         String name = request.getParameter("name");
 
-     // エラー表示
-        java.util.Map<String, String> errors = new java.util.HashMap<>();
+        // エラー表示
+        Map<String, String> errors = new HashMap<>();
         SubjectDao subDao = new SubjectDao();
+
         /*
 		 * 入力されを情報を基に登録
 		 * 学生番号の重複、入力の不備がある場合エラーメッセージを設定し再入力を実行
 		 */
-		if (cd.length() != 3)  {
+
+        //科目コードの長さは3桁
+        final int SUBJECT_CODE_LENGTH = 3;
+
+		if (cd.length() != SUBJECT_CODE_LENGTH)  {
 			errors.put("1", "科目コードは3文字で入力してください");
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("subject_create.jsp").forward(request, response);

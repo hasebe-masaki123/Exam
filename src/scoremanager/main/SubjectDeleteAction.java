@@ -10,16 +10,18 @@ import dao.SubjectDao;
 import tool.Action;
 
 public class SubjectDeleteAction extends Action {
+
+	@Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String cd = request.getParameter("no");
+        String cd = request.getParameter("cd");
 
-
+      //セッションからユーザーデータを取得
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
         // 対象の科目を取得
-        SubjectDao dao = new SubjectDao();
-        Subject subject = dao.get(cd, teacher.getSchool());
+        SubjectDao subDao = new SubjectDao();
+        Subject subject = subDao.get(cd, teacher.getSchool());
 
         // フォワード
         request.setAttribute("subject", subject);

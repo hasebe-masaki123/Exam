@@ -13,7 +13,7 @@
 
 
 
-<form action="StudentCreateExecute.action">
+<form action="StudentCreateExecute.action" method="post">
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="ent_year">入学年度</label>
 		<select class="form-control" id="ent_year" name="ent_year">
@@ -26,18 +26,18 @@
 	<div class="mt-2 text-warning">${errors.get("1")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="no">学生番号</label>
-		<input class="form-control" type="text" value="${no }" id="no"  name="no" maxlength=10 required>
+		<input class="form-control" type="text" value="${student.no }" id="no"  name="no" maxlength=10 required>
 	</div>
 	<div class="mt-2 text-warning">${errors.get("2")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >氏名</label>
-		<input class="form-control" type="text" value="${name }" id="name" name="name" maxlength=10 required>
+		<input class="form-control" type="text" value="${student.name }" id="name" name="name" maxlength=10 required>
 	</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="class_num">クラス</label>
 		<select class="form-control" id="class_num" name="class_num">
 			<c:forEach var="num" items="${class_num_set }">
-				<option value="${num }" <c:if test="${num==class_num }">selected</c:if>>${num }</option>
+				<option value="${num }" <c:if test="${num==student.class_num }">selected</c:if>>${num }</option>
 			</c:forEach>
 		</select>
 	</div>

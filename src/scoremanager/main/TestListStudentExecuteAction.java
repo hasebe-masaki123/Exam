@@ -16,7 +16,7 @@ public class TestListStudentExecuteAction extends Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		//初期値を設定
+		//初期化
 		String entYearStr = "";
 		String classNum ="";
 		String subjectCd = "";

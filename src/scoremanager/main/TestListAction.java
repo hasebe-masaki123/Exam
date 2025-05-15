@@ -43,7 +43,6 @@ public class TestListAction extends Action {
 		SubjectDao subDao = new SubjectDao();
 		List<Subject> subjects = subDao.filter(teacher.getSchool());
 
-		System.out.println(subjects);
 
 		session.setAttribute("class_num_set", classList);
 		session.setAttribute("ent_year_set", entYearSet);

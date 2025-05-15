@@ -26,7 +26,7 @@ public class TestRegistAction extends Action {
     	HttpSession session = req.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
-		//初期値を設定
+		//初期化
 		String entYearStr = "";
 		String classNum ="";
 		String subCd = "";

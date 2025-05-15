@@ -14,31 +14,31 @@
 <form action="StudentUpdateExecute.action" method="post">
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="ent_year">入学年度</label>
-		<input class="form-control border-0" type="text" id="ent_year" name="ent_year" value="${ent_year }" readonly>
+		<input class="form-control border-0" type="text" id="ent_year" name="ent_year" value="${student.entYear }" readonly>
 
 	</div>
 
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="no">学生番号</label>
-		<input class="form-control border-0" type="text"  id="no" name="no" value="${no }" readonly>
+		<input class="form-control border-0" type="text"  id="no" name="no" value="${student.no }" readonly>
 	</div>
 
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >氏名</label>
-		<input class="form-control" type="text"  id="name" name="name" value="${name }" maxlength=10 required>
+		<input class="form-control" type="text"  id="name" name="name" value="${student.name }" maxlength=10 required>
 	</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="class_num">クラス</label>
 		<select class="form-control" id="class_num" name="class_num">
 			<c:forEach var="num" items="${class_num_set }">
-				<option value="${num }" <c:if test="${num==class_num }">selected</c:if>>${num }</option>
+				<option value="${num }" <c:if test="${num==student.classNum }">selected</c:if>>${num }</option>
 			</c:forEach>
 		</select>
 	</div>
 	<div class="form-check">
 		<label class="form-check-label" for="student-check">在学中
 			<input class="form-check-input" type="checkbox" id="student-check"  value="true"
-			<c:if test="${is_attend }">checked</c:if> />
+			<c:if test="${student.attend }">checked</c:if> />
 		</label>
 	</div>
 
