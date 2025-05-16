@@ -68,7 +68,6 @@ public class TestDao extends Dao {
             test.setSchool(school);
             test.setNo(rSet.getInt("TEST.NO"));
             test.setPoint((Integer) rSet.getObject("POINT"));
-            System.out.println(rSet.getObject("TEST.POINT"));
 
             list.add(test);
         }

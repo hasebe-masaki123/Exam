@@ -119,6 +119,7 @@
 	</table>
 </c:when>
 <c:otherwise>
+	<div>氏名：${student.name}（${f4 }）</div>
 	<div>成績情報が存在しませんでした</div>
 </c:otherwise>
 </c:choose>

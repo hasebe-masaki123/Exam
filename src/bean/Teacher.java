@@ -24,6 +24,19 @@ public class Teacher extends User implements Serializable {
 	private School school;
 
 	/**
+	 * 管理者権限:boolean
+	 */
+	private boolean isAdmin;
+
+	public boolean getAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	/**
 	 * ゲッター・セッター
 	 */
 	public String getId() {
