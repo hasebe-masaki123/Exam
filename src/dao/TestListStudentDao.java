@@ -42,7 +42,7 @@ public class TestListStudentDao extends Dao {
 				statement = connection.prepareStatement(
 							"SELECT SUBJECT.CD, SUBJECT.NAME, TEST.NO, TEST.POINT FROM SUBJECT "
 						+ "JOIN TEST ON SUBJECT.CD = TEST.SUBJECT_CD "
-						+ "WHERE TEST.STUDENT_NO = ? AND TEST.POINT IS NOT NULL"
+						+ "WHERE TEST.STUDENT_NO = ? AND TEST.POINT IS NOT NULL "
 						+ "ORDER BY SUBJECT.CD ASC"
 				);
 				statement.setString(1, student.getNo());

@@ -28,20 +28,26 @@ public class TestListStudentExecuteAction extends Action {
 		subjectCd = request.getParameter("f3");
 		studentNo = request.getParameter("f4");
 
+		//フィルターの初期値を設定
 		request.setAttribute("f1", entYearStr);
 		request.setAttribute("f2", classNum);
 		request.setAttribute("f3", subjectCd);
 		request.setAttribute("f4", studentNo);
 
+		//学生情報を取得
 		StudentDao stuDao = new StudentDao();
 		Student student = stuDao.get(studentNo);
 
+		if (student != null) {
+			//成績情報の取得
+			TestListStudentDao tLstuDao = new TestListStudentDao();
+			List<TestListStudent> studentList = tLstuDao.filter(student);
 
-		TestListStudentDao tLstuDao = new TestListStudentDao();
-		List<TestListStudent> studentList = tLstuDao.filter(student);
+			request.setAttribute("list", studentList);
+		}
+
 
 		request.setAttribute("student", student);
-		request.setAttribute("list", studentList);
 		request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
 
 	}
