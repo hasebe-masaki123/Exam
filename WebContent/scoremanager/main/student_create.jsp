@@ -26,12 +26,12 @@
 	<div class="mt-2 text-warning">${errors.get("1")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="no">学生番号</label>
-		<input class="form-control" type="text" value="${student.no }" id="no"  name="no" maxlength=10 required>
+		<input class="form-control" type="text" value="${student.no }" id="no"  name="no" maxlength=10 placeholder="学生番号を入力してください"  required>
 	</div>
 	<div class="mt-2 text-warning">${errors.get("2")}</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >氏名</label>
-		<input class="form-control" type="text" value="${student.name }" id="name" name="name" maxlength=10 required>
+		<input class="form-control" type="text" value="${student.name }" id="name" name="name" maxlength=10 placeholder="氏名を入力してください"  required>
 	</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="class_num">クラス</label>

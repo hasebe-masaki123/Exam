@@ -13,7 +13,7 @@
 
 <p class="mb-5 text-center bg-success bg-opacity-25 py-2 px-4">登録が完了しました</p>
 
-<a href="SubjectCreate.action" class="me-5">戻る</a>
+<a href="StudentCreate.action" class="me-5">戻る</a>
 <a href="SubjectList.action">科目一覧</a>
 
 
