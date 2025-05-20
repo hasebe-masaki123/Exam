@@ -44,7 +44,9 @@ public class TeacherDao extends Dao {
 				// 学校フィールドには学校コードで検索した学校インスタンスをセット
 				teacher.setSchool(schoolDao.get(resultSet.getString("school_cd")));
 
-				teacher.setAdmin(resultSet.getBoolean("is_admin"));
+				/*教員管理機能が未実装のため退避させてます
+				 *teacher.setAdmin(resultSet.getBoolean("is_admin"));
+				*/
 			} else {
 				// リザルトセットが存在しない場合
 				// 教員インスタンスにnullをセット

@@ -4,8 +4,8 @@
   <c:param name="title">得点管理システム</c:param>
   <c:param name="scripts"></c:param>
   <c:param name="content">
-    <section class="container mt-4">
-      <h2 class="h4 mb-4">科目情報更新</h2>
+    <section class="me-4">
+      <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報更新</h2>
 <form action="SubjectUpdateExecute.action" method="post">
 
   <!-- 科目コード（表示用） -->
@@ -19,7 +19,7 @@
 
   <div class="mb-3">
     <label for="name" class="form-label">科目名</label>
-    <input type="text" class="form-control" id="name" name="name" value="${subject.name}" required>
+    <input type="text" class="form-control" id="name" name="name" value="${subject.name}" placeholder="科目名を入力してください" required>
   </div>
   <c:if test="${not empty errors['1']}">
     <div class="text-danger">${errors['1']}</div>
@@ -27,8 +27,8 @@
 
   <div class="mt-3">
     <button type="submit" class="btn btn-primary">更新</button>
-    <a href="SubjectList.action" class="btn btn-secondary">戻る</a>
   </div>
+  <a href="SubjectList.action">戻る</a>
 </form>
 
     </section>

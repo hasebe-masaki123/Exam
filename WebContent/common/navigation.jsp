@@ -11,8 +11,10 @@
 	<li class="nav-item mb-3"><a href="SubjectList.action">科目管理</a></li>
 	<li class="nav-item mb-3"><a href="ClassList.action">クラス管理</a></li>
 
+	<%--教員管理機能未実装のため退避
 	<c:if test="${user.admin }">
 		<li class="nav-item mb-3"><a href="teacherRegist.action">教員管理</a></li>
 	</c:if>
+	 --%>
 
 </ul>
