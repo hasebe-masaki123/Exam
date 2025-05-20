@@ -265,7 +265,7 @@ public class TestDao extends Dao {
 			statement = connection.prepareStatement(
 					"DELETE FROM TEST "
 					+
-					"WHERE STUDENT_NO = ?"
+					"WHERE SUBJECT_CD = ?"
 			);
 
 			statement.setString(1,  subjectCd);

@@ -28,6 +28,12 @@ public class LoginExecuteAction extends Action {
 		id = req.getParameter("id");// 教員ID
 		password = req.getParameter("password");//パスワード
 
+// 		パスワードのハッシュ化
+//		String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+//
+//		boolean isMatch = BCrypt.checkpw("password123", hashed);
+
+
 		//DBからデータ取得 3
 		teacher = teacherDao.login(id, password);//教員データ取得
 

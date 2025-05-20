@@ -28,13 +28,6 @@ public class Teacher extends User implements Serializable {
 	 */
 	private boolean isAdmin;
 
-	public boolean getAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 
 	/**
 	 * ゲッター・セッター
@@ -69,5 +62,13 @@ public class Teacher extends User implements Serializable {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	public boolean getAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }

@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import bean.School;
 import bean.Teacher;
 
 public class TeacherDao extends Dao {
@@ -92,5 +95,82 @@ public class TeacherDao extends Dao {
 			return null;
 		}
 		return teacher;
+	}
+
+	public List<Teacher> filter(School school) throws Exception {
+
+		List<Teacher> list = new ArrayList<>();
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			statement = connection.prepareStatement(
+					"SELECT * FROM TEACHER WHERE SCHOOL_CD = ?;"
+					);
+			statement.setString(1, school.getCd());
+
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Teacher teacher = new Teacher();
+				teacher.setId(resultSet.getString("id"));
+				teacher.setName(resultSet.getString("name"));
+				teacher.setPassword(resultSet.getString("password"));
+				teacher.setSchool(school);
+
+				list.add(teacher);
+
+			}
+
+		} catch (Exception e){
+			throw e;
+
+		} finally {
+			if(statement != null) statement.close();
+			if(connection != null) connection.close();
+		}
+
+		return list;
+	}
+
+	public boolean save(Teacher teacher) throws Exception {
+
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+
+		try {
+
+			if (get(teacher.getId())==null) {
+
+				statement = connection.prepareStatement(
+						"INSERT INTO TEACHER VALUES(?,?,?,?,?)"
+						);
+				statement.setString(1, teacher.getId());
+				statement.setString(2, teacher.getPassword());
+				statement.setString(3, teacher.getName());
+				statement.setString(4, teacher.getSchool().getCd());
+				statement.executeUpdate();
+
+
+			} else {
+
+				statement = connection.prepareStatement(
+						"UPDATE TEACHER SET ID = ?, PASSWORD = ?, NAME = ? WHERE ID = ? AND SCHOOL_CD = ?;"
+						);
+				statement.setString(1, teacher.getId());
+				statement.setString(2, teacher.getPassword());
+				statement.setString(3, teacher.getName());
+				statement.setString(4, teacher.getId());
+				statement.setString(5, teacher.getSchool().getCd());
+				statement.executeUpdate();
+
+			}
+
+		} finally {
+			if (statement != null) statement.close();
+			if (connection != null) connection.close();
+		}
+
+		return true;
 	}
 }
