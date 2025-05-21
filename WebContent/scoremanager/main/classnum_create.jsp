@@ -3,16 +3,28 @@
 <c:import url="/common/base.jsp">
   <c:param name="title">クラス新規作成</c:param>
   <c:param name="content">
-    <section class="container mt-4">
-      <h2 class="h4 mb-4">クラス新規作成</h2>
+<section class="me-4">
+<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">クラス新規作成</h2>
       <form action="ClassNumCreateExecute.action" method="post">
-        <div class="mb-3">
-          <label for="classNum" class="form-label">クラス名</label>
-          <input type="text" class="form-control" id="classNum" name="classNum" required>
-        </div>
-        <button type="submit" class="btn btn-primary">登録</button>
-        <a href="ClassNumList.action" class="btn btn-secondary">戻る</a>
-      </form>
+
+  <c:if test="${not empty errors}">
+    <div class="d-flex flex-column mb-3">
+      <ul class="mb-0">
+        <c:forEach var="err" items="${errors}">
+          <li>${err.value}</li>
+        </c:forEach>
+      </ul>
+    </div>
+  </c:if>
+	<div class="d-flex flex-column mb-3">
+		<label class="form-label" for="name" >クラス名</label>
+    		<input class="form-control" type="text" value="${classNum.classNum}" id="classNum" name="classNum" maxlength=5 placeholder="クラス名を入力してください" required>
+	</div>
+
+	<input class="btn btn-secondary" type="submit" value="登録">
+  <a href="ClassNumList.action" class="btn btn-secondary">戻る</a>
+</form>
+
     </section>
   </c:param>
 </c:import>

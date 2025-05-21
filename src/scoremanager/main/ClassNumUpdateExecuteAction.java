@@ -1,5 +1,8 @@
 package scoremanager.main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,8 +24,23 @@ public class ClassNumUpdateExecuteAction extends Action {
         classNum.setSchool(teacher.getSchool());
         classNum.setClassNum(newClassNum);
 
+        Map<String, String> errors = new HashMap<>();
+
+        // 5文字を超える場合のバリデーション
+        if (newClassNum == null || newClassNum.length() > 5) {
+            errors.put("char", "クラス番号は5文字以内で入力してください。");
+        }
+
+        if (!errors.isEmpty()) {
+            request.setAttribute("errors", errors);
+            request.setAttribute("classNum", classNum);
+            request.getRequestDispatcher("classnum_update.jsp").forward(request, response);
+            return;
+        }
+
         ClassNumDao dao = new ClassNumDao();
         dao.save(classNum, oldClassNum);
+
         request.getRequestDispatcher("classnum_update_done.jsp").forward(request, response);
     }
 }
