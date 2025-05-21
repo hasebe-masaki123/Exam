@@ -49,6 +49,8 @@ public class LoginExecuteAction extends Action {
 			teacher.setAuthenticated(true);
 			// セッションにログイン情報を保存
 			session.setAttribute("user", teacher);
+			//セッションの保存時間（秒数）を指定
+			session.setMaxInactiveInterval(1500);
 
 			//リダイレクト
 			url = "main/Menu.action";

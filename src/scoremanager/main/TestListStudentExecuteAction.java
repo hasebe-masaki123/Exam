@@ -26,7 +26,7 @@ public class TestListStudentExecuteAction extends Action {
 		entYearStr = request.getParameter("f1");
 		classNum = request.getParameter("f2");
 		subjectCd = request.getParameter("f3");
-		studentNo = request.getParameter("f4");
+		studentNo = request.getParameter("f4").trim();
 
 		//フィルターの初期値を設定
 		request.setAttribute("f1", entYearStr);

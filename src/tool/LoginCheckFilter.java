@@ -15,27 +15,48 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = { "/*" })
 public class LoginCheckFilter implements Filter {
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
 
-        HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
-
-        HttpSession session = request.getSession(false);
-
-        // セッションが無効 or ユーザー属性が無い場合
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect("timeout.jsp");
-            return;
-        }
-
-        // 通過させる
-        chain.doFilter(req, res);
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // 初期化処理が必要であればここに記述（今回は不要）
     }
 
-    public void init(FilterConfig filterConfig) {
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-	public void destroy() {
-	}
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        // URIを取得（例：/exam_login/scoremanager/StudentList.action）
+        String uri = req.getRequestURI();
+
+        // セッションとユーザーの存在チェック
+        HttpSession session = req.getSession(false);
+        boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
+
+        // ログインページとログイン処理などを除外
+        boolean indexPage = uri.contains("index.jsp");
+        boolean isLoginPage = uri.contains("login.jsp");
+        boolean timeoutPage = uri.contains("timeout.jsp");
+        boolean isLogoutPage = uri.contains("logout.jsp");
+        boolean isLoginAction = uri.contains("/scoremanager/Login.action");
+        boolean isLoginExecuteAction = uri.contains("/scoremanager/LoginExecute.action");
+        boolean isLogoutAction = uri.contains("/scoremanager/Logout.action");
+
+        // 静的リソース（CSS, JS, 画像など）も除外
+        boolean isStatic = uri.contains("/css") || uri.contains("/js") || uri.contains("/images");
+
+
+        if (isLoggedIn || indexPage || isLoginPage || timeoutPage ||  isLogoutPage || isLoginAction ||  isLoginExecuteAction || isLogoutAction || isStatic) {
+            chain.doFilter(request, response);
+        } else {
+            res.sendRedirect(req.getContextPath() + "/timeout.jsp");
+        }
+    }
+
+    @Override
+    public void destroy() {
+        // アプリケーション終了時の後処理が必要であればここに記述（今回は不要）
+    }
 }
