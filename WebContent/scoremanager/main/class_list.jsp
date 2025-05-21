@@ -11,7 +11,7 @@
 <section class="me-4">
 <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">クラス管理</h2>
 <div class="my-2 text-end px-4">
-	<a href="####.action">新規登録</a>
+	<a href="ClassCreate.action">新規登録</a>
 </div>
 		<table class="table table-hover">
 		<tr>
@@ -22,8 +22,8 @@
 		<c:forEach var="classCd" items="${class_list_set}">
 			<tr>
 				<td>${classCd}</td>
-				<td><a href="####.action?no=${classCd }">変更</a></td>
-				<td><a href="####.action?no=${classCd }">削除</a></td>
+				<td><a href="ClassUpdate.action?no=${classCd }">変更</a></td>
+				<td><a href="ClassDelete.action?no=${classCd }">削除</a></td>
 			</tr>
 		</c:forEach>
 	</table>
