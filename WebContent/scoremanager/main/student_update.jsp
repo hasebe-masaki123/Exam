@@ -25,7 +25,7 @@
 
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="name" >氏名</label>
-		<input class="form-control" type="text"  id="name" name="name" value="${student.name }" maxlength=10 required>
+		<input class="form-control" type="text"  id="name" name="name" value="${student.name }" placeholder="氏名を入力してください"  maxlength=10 required>
 	</div>
 	<div class="d-flex flex-column mb-3">
 		<label class="form-label" for="class_num">クラス</label>
@@ -44,6 +44,7 @@
 
 	<input class="btn btn-secondary" type="submit" name="login" value="登録して終了">
 </form>
+<a href="StudentList.action">戻る</a>
 
 </section>
 </c:param>

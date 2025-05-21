@@ -113,7 +113,7 @@ public class StudentDao extends Dao{
 
 		try {
 			statement = connection.prepareStatement(
-				"SELECT * FROM  STUDENT WHERE ENT_YEAR = ? AND  (IS_ATTEND IS TRUE OR IS_ATTEND IS ?)"
+				"SELECT * FROM  STUDENT WHERE ENT_YEAR = ? AND  (IS_ATTEND IS TRUE OR IS_ATTEND IS ?) ORDER BY NO ASC"
 			);
 			statement.setInt(1,entYear);
 			statement.setBoolean(2, isAttend);
@@ -143,7 +143,7 @@ public class StudentDao extends Dao{
 			statement = connection.prepareStatement(
 					"SELECT * FROM  STUDENT "
 					+
-					"WHERE IS_ATTEND IS TRUE OR IS_ATTEND IS ?"
+					"WHERE IS_ATTEND IS TRUE OR IS_ATTEND IS ? ORDER BY NO ASC"
 			);
 			statement.setBoolean(1, isAttend);
 

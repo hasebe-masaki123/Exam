@@ -81,6 +81,9 @@
 </div>
 
 <c:choose>
+<c:when test="${student==null}">
+	<div>学生情報が存在しませんでした</div>
+</c:when>
 <c:when test="${list.size()>0}">
 	<div>氏名：${student.name}（${f4 }）</div>
 	<table class="table table-hover">
@@ -116,6 +119,7 @@
 	</table>
 </c:when>
 <c:otherwise>
+	<div>氏名：${student.name}（${f4 }）</div>
 	<div>成績情報が存在しませんでした</div>
 </c:otherwise>
 </c:choose>
