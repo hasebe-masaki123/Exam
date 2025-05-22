@@ -101,4 +101,25 @@ public class ClassNumDao extends Dao {
             if (con != null) con.close();
         }
     }
+
+    public boolean exists(String classNum, String schoolCd) throws Exception {
+        Connection con = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement("SELECT COUNT(*) FROM CLASS_NUM WHERE SCHOOL_CD = ? AND CLASS_NUM = ?");
+            ps.setString(1, schoolCd);
+            ps.setString(2, classNum);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+            return false;
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        }
+    }
+
 }

@@ -26,9 +26,16 @@ public class ClassNumUpdateExecuteAction extends Action {
 
         Map<String, String> errors = new HashMap<>();
 
-        // 5文字を超える場合のバリデーション
+        // 文字数チェック（5文字以内）
         if (newClassNum == null || newClassNum.length() > 5) {
             errors.put("char", "クラス番号は5文字以内で入力してください。");
+        }
+
+        ClassNumDao dao = new ClassNumDao();
+
+        // 重複チェック（別のクラス番号として存在していたらNG）
+        if (!newClassNum.equals(oldClassNum) && dao.exists(newClassNum, teacher.getSchool().getCd())) {
+            errors.put("duplicate", "クラス名が重複しています。");
         }
 
         if (!errors.isEmpty()) {
@@ -38,9 +45,7 @@ public class ClassNumUpdateExecuteAction extends Action {
             return;
         }
 
-        ClassNumDao dao = new ClassNumDao();
         dao.save(classNum, oldClassNum);
-
         request.getRequestDispatcher("classnum_update_done.jsp").forward(request, response);
     }
 }

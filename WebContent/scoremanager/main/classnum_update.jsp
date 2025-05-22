@@ -11,15 +11,16 @@
       <form action="ClassNumUpdateExecute.action" method="post">
         <input type="hidden" name="oldClassNum" value="${classNum.classNum}" />
 
-        <c:if test="${not empty errors}">
-          <div class="alert alert-danger">
-            <ul class="mb-0">
-              <c:forEach var="err" items="${errors}">
-                <li>${err.value}</li>
-              </c:forEach>
-            </ul>
-          </div>
-        </c:if>
+	<c:if test="${not empty errors}">
+	  <div class="alert alert-danger">
+	    <ul>
+	      <c:forEach var="err" items="${errors}">
+	        <li>${err.value}</li>
+	      </c:forEach>
+	    </ul>
+	  </div>
+	</c:if>
+
 
         <div class="d-flex flex-column mb-3">
           <label for="classNum" class="form-label">クラス番号</label>

@@ -19,14 +19,21 @@ public class ClassNumCreateExecuteAction extends Action {
 
         String classNumStr = request.getParameter("classNum");
 
+        ClassNumDao dao = new ClassNumDao();
         ClassNum classNum = new ClassNum();
         classNum.setClassNum(classNumStr);
         classNum.setSchool(teacher.getSchool());
 
-        // 文字数チェック（5文字以内）
         Map<String, String> errors = new HashMap<>();
+
+        // 文字数チェック（5文字以内）
         if (classNumStr == null || classNumStr.length() > 5) {
             errors.put("char", "クラス番号は5文字以内で入力してください。");
+        }
+
+        // 重複チェック
+        if (dao.exists(classNumStr, teacher.getSchool().getCd())) {
+            errors.put("duplicate", "クラス名が重複しています。");
         }
 
         if (!errors.isEmpty()) {
@@ -36,9 +43,7 @@ public class ClassNumCreateExecuteAction extends Action {
             return;
         }
 
-        ClassNumDao dao = new ClassNumDao();
         dao.save(classNum, classNumStr);
-
         request.getRequestDispatcher("classnum_create_done.jsp").forward(request, response);
     }
 }
