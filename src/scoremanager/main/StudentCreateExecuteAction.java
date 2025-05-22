@@ -78,12 +78,12 @@ public class StudentCreateExecuteAction extends Action{
 				stu.setAttend(true);
 				stu.setSchool(school);
 
-				/*
-				 *	学生ごとのTESTテーブルを作成
-				  */
 				//DBに登録する
 				stuDao.save(stu);
 
+				/*
+				 *	学生ごとのTESTテーブルを作成
+				 */
 				TestDao tesDao = new TestDao();
 				tesDao.stuInsert(student_no, subjectList, school, class_num);
 
