@@ -29,7 +29,7 @@
 
         <div class="mb-3">
           <button type="submit" class="btn btn-primary">変更</button>
-          <a href="ClassNumList.action" class="btn btn-secondary">戻る</a>
+ 			<a href="ClassNumList.action">戻る</a>
         </div>
       </form>
     </section>
