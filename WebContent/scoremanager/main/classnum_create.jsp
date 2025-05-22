@@ -21,9 +21,9 @@
     		<input class="form-control" type="text" value="${classNum.classNum}" id="classNum" name="classNum" maxlength=5 placeholder="クラス名を入力してください" required>
 	</div>
 
-	<input class="btn btn-secondary" type="submit" value="登録">
-  <a href="ClassNumList.action" class="btn btn-secondary">戻る</a>
+	<input class="btn btn-primary" type="submit" value="登録">
 </form>
+ <a href="ClassNumList.action">戻る</a>
 
     </section>
   </c:param>

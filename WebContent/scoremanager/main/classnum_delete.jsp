@@ -16,7 +16,7 @@
 	<input class="btn btn-danger" type="submit" value="削除">
 	</form>
 	<form action="ClassNumList.action" method="get">
-    <input class="btn btn-secondary" type="submit" value="キャンセル">
+    <input class="btn btn-secondary" type="submit" value="戻る">
       </form>
     </section>
   </c:param>
