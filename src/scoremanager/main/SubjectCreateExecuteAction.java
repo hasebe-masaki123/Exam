@@ -27,8 +27,8 @@ public class SubjectCreateExecuteAction extends Action {
 		HttpSession session = request.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-		String cd = request.getParameter("cd");
-        String name = request.getParameter("name");
+		String cd = request.getParameter("cd").trim();
+        String name = request.getParameter("name").trim();
 
         // エラー表示
         Map<String, String> errors = new HashMap<>();

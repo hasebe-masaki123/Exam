@@ -31,8 +31,8 @@ public class StudentCreateExecuteAction extends Action{
 		//入力された登録用の学生情報を取得
 		String ent_year_str = request.getParameter("ent_year");
 		int ent_year = Integer.parseInt(ent_year_str);
-		String student_no = request.getParameter("no");
-		String student_name = request.getParameter("name");
+		String student_no = request.getParameter("no").trim();
+		String student_name = request.getParameter("name").trim();
 		String class_num = request.getParameter("class_num");
 
 		School school = teacher.getSchool();
