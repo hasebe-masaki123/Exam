@@ -26,7 +26,7 @@
   </c:if>
 
   <div class="mt-3">
-    <button type="submit" class="btn btn-primary">更新</button>
+    <button type="submit" class="btn btn-primary">変更</button>
   </div>
   <a href="SubjectList.action">戻る</a>
 </form>
