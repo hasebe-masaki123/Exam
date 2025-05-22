@@ -42,7 +42,7 @@
 		</label>
 	</div>
 
-	<input class="btn btn-secondary" type="submit" name="login" value="変更">
+	<input class="btn btn-primary" type="submit" name="login" value="変更">
 </form>
 <a href="StudentList.action">戻る</a>
 
