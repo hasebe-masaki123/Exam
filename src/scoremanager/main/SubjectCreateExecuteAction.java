@@ -64,7 +64,8 @@ public class SubjectCreateExecuteAction extends Action {
 
       //TESTテーブルを作成
         StudentDao stuDao = new StudentDao();
-        List<Student> stuList = stuDao.filter(teacher.getSchool(), true);
+        //第二引数はすべての学生を取得したいのでfalseにしています
+        List<Student> stuList = stuDao.filter(teacher.getSchool(), false);
 
 
         TestDao testDao =new TestDao();
