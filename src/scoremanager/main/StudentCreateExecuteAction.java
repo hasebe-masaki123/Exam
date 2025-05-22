@@ -36,16 +36,10 @@ public class StudentCreateExecuteAction extends Action{
 		String class_num = request.getParameter("class_num");
 
 		School school = teacher.getSchool();
+		System.out.println( student_no );
 
-		/*
-		 *	学生ごとのTESTテーブルを作成
-		  */
 		SubjectDao subDao = new SubjectDao();
 		List<Subject> subjectList = subDao.filter(teacher.getSchool());
-
-		TestDao tesDao = new TestDao();
-		tesDao.stuInsert(student_no, subjectList, school, class_num);
-
 
 
 		//再入力用に学生情報をリクエストパラメータに保持
@@ -84,8 +78,14 @@ public class StudentCreateExecuteAction extends Action{
 				stu.setAttend(true);
 				stu.setSchool(school);
 
+				/*
+				 *	学生ごとのTESTテーブルを作成
+				  */
 				//DBに登録する
 				stuDao.save(stu);
+
+				TestDao tesDao = new TestDao();
+				tesDao.stuInsert(student_no, subjectList, school, class_num);
 
 				request.getRequestDispatcher("student_create_done.jsp").forward(request, response);
 
