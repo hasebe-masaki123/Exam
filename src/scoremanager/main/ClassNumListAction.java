@@ -10,7 +10,7 @@ import bean.Teacher;
 import dao.ClassNumDao;
 import tool.Action;
 
-public class ClassListAction extends Action {
+public class ClassNumListAction extends Action {
 
 	@Override
 	public void execute(

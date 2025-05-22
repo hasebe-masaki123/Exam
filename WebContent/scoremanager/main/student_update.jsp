@@ -42,8 +42,9 @@
 		</label>
 	</div>
 
-	<input class="btn btn-secondary" type="submit" name="login" value="登録して終了">
+	<input class="btn btn-primary" type="submit" name="login" value="変更">
 </form>
+<a href="StudentList.action">戻る</a>
 
 </section>
 </c:param>

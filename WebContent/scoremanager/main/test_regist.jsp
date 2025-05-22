@@ -94,7 +94,7 @@
 
 					<td>
 						<input type="hidden" name="studentNos" value="${test.student.no }">
-						<input type="text" name="points"
+						<input type="number" name="points"
 							<c:if test="${test.point != null }">value="${test.point}"</c:if>/>
 
 							<%-- 学生番号をキーにしてエラーがあるか確認 --%>
